@@ -5,6 +5,7 @@
       username: ["seaofclouds"],              // [string]   required, unless you want to display our tweets. :) it can be an array, just do ["username1","username2","etc"]
       list: null,                              //[string]   optional name of list belonging to username
       avatar_size: null,                      // [integer]  height and width of avatar if displayed (48px max)
+      from: false,                            // [boolean]  show username of sender in front of tweet?
       count: 3,                               // [integer]  how many tweets to display?
       intro_text: null,                       // [string]   do you want text BEFORE your your tweets?
       outro_text: null,                       // [string]   do you want text AFTER your tweets?
@@ -144,11 +145,13 @@
           var join = ((s.join_text) ? join_template : ' ');
           var avatar_template = '<a class="tweet_avatar" href="http://twitter.com/'+from_user+'"><img src="'+profile_image_url+'" height="'+s.avatar_size+'" width="'+s.avatar_size+'" alt="'+from_user+'\'s avatar" title="'+from_user+'\'s avatar" border="0"/></a>';
           var avatar = (s.avatar_size ? avatar_template : '');
+          var user_template = ' by <a class="tweet_username" href="http://twitter.com/'+from_user+'">'+from_user+'</a>:';
+          var user = (s.from ? user_template : '');
           var date = '<span class="tweet_time"><a href="http://twitter.com/'+from_user+'/statuses/'+item.id+'" title="view tweet on twitter">'+relative_time(item.created_at)+'</a></span>';
           var text = '<span class="tweet_text">' +$([item.text]).linkUrl().linkUser().linkHash().makeHeart().capAwesome().capEpic()[0]+ '</span>';
 
           // until we create a template option, arrange the items below to alter a tweet's display.
-          list.append('<li>' + avatar + date + join + text + '</li>');
+          list.append('<li>' + avatar + date + user + join + text + '</li>');
 
           list.children('li:first').addClass('tweet_first');
           list.children('li:odd').addClass('tweet_even');

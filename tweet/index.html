@@ -52,6 +52,12 @@
           query: "cieR8oog",
           loading_text: "searching twitter..."
         }).bind("empty", function() { $(this).append("No matching tweets found"); });
+        $("#user").tweet({
+          from: true,
+          count: 4,
+          loading_text: "searching twitter...", 
+          query: "twitter"
+        });
       })
     </script>
   </head>
@@ -78,6 +84,9 @@
       
       <p>adding a message when no tweets matching 'cieR8oog' are found.</p>
       <div id='empty' class="query"></div>
+      
+      <p>displaying username instead of avatar.</p>
+      <div id='user' class="query"></div>
       
       <h3>Features</h3>
       <ul>
